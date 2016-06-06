@@ -1,6 +1,6 @@
 $(document).ready(function(){
   var weather = new XMLHttpRequest();
-  var dis = "Current location:" + r.current_observation.display_location + "<p><strong>";
+  var dis //= "Current location:" + current_observation.display_location + "<p><strong>";
   // var r = JSON.parse(weather.response);
   $.ajax({
     type:"GET",
@@ -9,9 +9,9 @@ $(document).ready(function(){
       console.log(data);
       console.log(textStatus);
       console.log(jqXHR);
-      dis +=  "current temp: " + r.current_observation.temperature_string + "<p><strong>";
-      dis +=  " current wind speed: " + r.current_observation.wind_string +"<p><strong>";
-      dis += "current wind direction:" +r.current_observation.wind_dir_string;
+      dis +=  "current temp: " + current_observation.temperature_string + "<p><strong>";
+      dis +=  " current wind speed: " + current_observation.wind_string +"<p><strong>";
+      dis += "current wind direction:" + current_observation.wind_dir_string;
       document.getElementById("here").innerHTML = dis;
     },
     error: function(jqXHR, textStatus, errorThrown){
