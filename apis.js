@@ -1,7 +1,8 @@
 $(document).ready(function(){
   var weather = new XMLHttpRequest();
-  var dis //= "Current location:" + current_observation.display_location + "<p><strong>";
-  // var r = JSON.parse(weather.response);
+  // var r = weather.current_observation;
+  var dis
+
   $.ajax({
     type:"GET",
     url: "http://api.wunderground.com/api/3758d4a57136a50e/conditions/q/NY/New_York_City.json",
@@ -10,10 +11,12 @@ $(document).ready(function(){
       console.log(data.response);
       console.log(textStatus);
       console.log(jqXHR);
-      dis =  "Current location:" + data.current_observation.display_location.city + "<p><strong>";
-      dis +=  "current temp: " + data.current_observation.temperature_string + "<p><strong>";
-      dis +=  " current wind speed: " + data.current_observation.wind_string +"<p><strong>";
-      dis += "current wind direction:" + data.current_observation.wind_dir_string;
+      dis = "Current location:" + data.current_observation.display_location.city + "<p><strong>";
+      dis += "forecast:" + simpleforecast.date.day + "<p><strong>";
+      // dis +=  "current temp: " + data.current_observation.temperature_string + "<p><strong>";
+      // dis +=  " current wind speed: " + data.current_observation.wind_string +"<p><strong>";
+      // dis += "current wind direction:" +data.current_observation.wind_dir_string + "<p><strong>";
+      // dis += "current wind direction:" +data.current_observation.wind_dir_string + "<p><strong>";
       document.getElementById("here").innerHTML = dis;
     },
     error: function(jqXHR, textStatus, errorThrown){
@@ -21,8 +24,39 @@ $(document).ready(function(){
      console.log(textStatus);
      console.log(errorThrown);
     }
-  });
+  })
 });
+
+
+
+
+
+
+
+
+
+// $(document).ready(function(){
+//   var weather = new XMLHttpRequest();
+//   var dis //= "Current location:" + current_observation.display_location + "<p><strong>";
+//   // var r = JSON.parse(weather.response);
+//   $.ajax({
+//     type:"GET",
+//     url: "http://api.wunderground.com/api/3758d4a57136a50e/geolookup/conditions/q/NY/New_York_City.json",
+//     dataType: "jsonp",
+//     success: function(parsed_json){
+      
+//       var location = parsed_json["location"]["city"];
+//       var temp_f = parsed_json["current_observation"]["temp_f"];
+//       document.getElementById("here").innerHTML = location += "<p><strong>" + temp_f + "<p><strong>";
+//     },
+//     error: function(jqXHR, textStatus, errorThrown){
+//      console.log(jqXHR);
+//      console.log(textStatus);
+//      console.log(errorThrown);
+//     }
+//   });
+// }); 
+//this is the basic version
 
 
 
