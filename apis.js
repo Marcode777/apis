@@ -1,23 +1,24 @@
 $(document).ready(function(){
   var weather = new XMLHttpRequest();
   // var r = weather.current_observation;
-  var dis
+  var yeah
 
   $.ajax({
     type:"GET",
     url: "http://api.wunderground.com/api/3758d4a57136a50e/conditions/q/NY/New_York_City.json",
     success: function(data, textStatus, jqXHR){
-      console.log(data.current_observation);
+      console.log(data.current_observation); //current_observation is from the key-value pair response, from reading the documentation
       console.log(data.response);
       console.log(textStatus);
       console.log(jqXHR);
-      dis = "Current location:" + data.current_observation.display_location.city + "<p><strong>";
-      dis += "forecast:" + simpleforecast.date.day + "<p><strong>";
-      // dis +=  "current temp: " + data.current_observation.temperature_string + "<p><strong>";
-      // dis +=  " current wind speed: " + data.current_observation.wind_string +"<p><strong>";
-      // dis += "current wind direction:" +data.current_observation.wind_dir_string + "<p><strong>";
-      // dis += "current wind direction:" +data.current_observation.wind_dir_string + "<p><strong>";
-      document.getElementById("here").innerHTML = dis;
+      yeah = "Current location:" + data.current_observation.display_location.full + "<p><strong>";
+      yeah += "current temp:" + data.current_observation.temperature_string + "<p><strong>";
+      yeah += "feels like:" + data.current_observation.feelslike_string + "<p><strong>";
+      yeah += "solar radiation:" + data.current_observation.solarradiation + "<p><strong>";
+      yeah += "wind direction:" + data.current_observation.wind_dir + "<p><strong>";
+      yeah += "wind speed:" + data.current_observation.wind_mph + "<p><strong>";
+
+      document.getElementById("here").innerHTML = yeah;
     },
     error: function(jqXHR, textStatus, errorThrown){
      console.log(jqXHR);
